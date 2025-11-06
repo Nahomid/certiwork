@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CertiWork — Comunidad</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg-1:#071022;
@@ -18,21 +19,54 @@
       --radius:14px;
       font-family:'Inter',system-ui;
     }
-    body{margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text)}
+    body{margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);line-height:1.55;}
+
     a{text-decoration:none;color:inherit}
 
-    .wrap{max-width:1150px;margin:36px auto;padding:24px}
+    .wrap{max-width:1150px;margin:auto;padding:24px}
 
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{width:56px;border-radius:12px}
-    nav{display:flex;gap:14px}
-    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted)}
-    nav a.active{background:var(--glass);color:white}
+    /* HEADER */
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 0;
+      position:sticky;top:0;z-index:100;background:var(--bg-1);
+    }
+    .brand{display:flex;gap:10px;align-items:center;font-size:18px;font-weight:700}
+    .brand img{width:44px;border-radius:12px}
+
+    nav{display:flex;gap:14px;transition:.3s ease;}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted);font-size:14px;}
+    nav a.active, nav a:hover{background:var(--glass);color:white}
+
+    /* MENU MOBILE */
+    #toggleMenu{
+      display:none;
+      width:34px;height:34px;background:var(--glass);
+      border-radius:8px;border:none;cursor:pointer;color:white;
+      align-items:center;justify-content:center;
+    }
+
+    @media(max-width:780px){
+      nav{
+        position:absolute;top:64px;right:24px;
+        background:var(--glass);
+        backdrop-filter:blur(8px);
+        padding:14px;
+        border-radius:12px;
+        display:none;flex-direction:column;gap:8px;
+      }
+      nav.show{display:flex;}
+      #toggleMenu{display:flex;}
+    }
 
     h1{margin:0 0 18px;font-size:28px}
+    @media(max-width:600px){
+      h1{font-size:22px}
+    }
 
-    /* Publish Box */
+    .muted{color:var(--muted)}
+
+    /* Post Input */
     .post-box{
       background:var(--glass);
       padding:18px;border-radius:var(--radius);
@@ -42,32 +76,44 @@
     .post-box textarea{
       flex:1;background:#101a29;border:none;outline:none;
       padding:12px;border-radius:10px;color:white;resize:none;height:70px;
+      font-size:14px;
     }
     .send-btn{
       background:linear-gradient(90deg,var(--accent-2),var(--accent));
       border:none;padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer;color:#071022;
+      font-size:14px;
     }
 
-    /* Posts */
+    @media(max-width:600px){
+      .post-box{flex-direction:column;}
+      .send-btn{width:100%;}
+    }
+
+    /* Feed */
     .feed{display:flex;flex-direction:column;gap:18px}
     .post{
       background:var(--glass);padding:18px;border-radius:var(--radius);
       backdrop-filter:blur(6px);
+      font-size:15px;
     }
-    .post-user{font-weight:700;margin-bottom:8px}
-    .muted{color:var(--muted)}
+    .post-user{font-weight:700;margin-bottom:4px;font-size:15px;}
 
-    footer{text-align:center;margin-top:40px;color:var(--muted)}
+    footer{text-align:center;margin-top:40px;color:var(--muted);padding-bottom:24px;font-size:14px;}
   </style>
+
 </head>
 <body>
+
 <div class="wrap">
 
 <header>
   <div class="brand">
     <img src="certiwork-logo.png" alt="CertiWork">
-    <strong>CertiWork</strong>
+    CertiWork
   </div>
+
+  <button id="toggleMenu">≡</button>
+
   <nav>
     <a href="index.html">Inicio</a>
     <a href="cursos.html">Cursos</a>
@@ -77,31 +123,31 @@
 </header>
 
 <h1>Comunidad</h1>
-<p class="muted" style="margin-bottom:26px;">Comparte tus avances, pregunta, colabora y crece junto a otros estudiantes.</p>
+<p class="muted" style="margin-bottom:26px; max-width:700px;">
+  Comparte, conecta y crece con otros estudiantes que también quieren tener habilidades reales. 🚀
+</p>
 
-<!-- Publicar -->
 <div class="post-box">
   <textarea placeholder="Comparte algo con la comunidad..."></textarea>
   <button class="send-btn">Publicar</button>
 </div>
 
-<!-- Feed -->
 <div class="feed">
   <div class="post">
     <div class="post-user">Carla M.</div>
-    <p>Estoy avanzando mi proyecto final del curso BIM 🎯. ¿Alguien más quiere hacer un grupo para practicar modelado?</p>
+    <p>Estoy avanzando mi proyecto final del curso BIM 🎯. ¿Alguien se anima a formar grupo de práctica?</p>
     <div class="muted" style="margin-top:6px;">Hace 2 horas</div>
   </div>
 
   <div class="post">
     <div class="post-user">Luis R.</div>
-    <p>Acabo de terminar el curso de Desarrollo de Software Básico 👨‍💻🔥 ¡Lo recomiendo totalmente!</p>
+    <p>Terminé el curso de Desarrollo de Software Básico 👨‍💻🔥 ¡100% recomendado!</p>
     <div class="muted" style="margin-top:6px;">Hace 1 día</div>
   </div>
 
   <div class="post">
     <div class="post-user">Tú 😎</div>
-    <p>Aquí aparecerán tus publicaciones cuando compartas algo.</p>
+    <p>Aquí aparecerán tus publicaciones.</p>
     <div class="muted" style="margin-top:6px;">Ahora mismo</div>
   </div>
 </div>
@@ -109,6 +155,12 @@
 <footer>CertiWork © 2025 — Creciendo juntos.</footer>
 
 </div>
+
+<script>
+  const toggle = document.getElementById("toggleMenu");
+  const nav = document.querySelector("nav");
+  toggle.onclick = () => nav.classList.toggle("show");
+</script>
+
 </body>
 </html>
-
