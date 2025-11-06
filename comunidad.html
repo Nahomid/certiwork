@@ -128,11 +128,11 @@
 </p>
 
 <div class="post-box">
-  <textarea placeholder="Comparte algo con la comunidad..."></textarea>
-  <button class="send-btn">Publicar</button>
+  <textarea id="postText" placeholder="Comparte algo con la comunidad..."></textarea>
+  <button class="send-btn" id="sendPost">Publicar</button>
 </div>
 
-<div class="feed">
+<div class="feed" id="feed">
   <div class="post">
     <div class="post-user">Carla M.</div>
     <p>Estoy avanzando mi proyecto final del curso BIM 🎯. ¿Alguien se anima a formar grupo de práctica?</p>
@@ -157,9 +157,37 @@
 </div>
 
 <script>
+  // Menú responsive
   const toggle = document.getElementById("toggleMenu");
   const nav = document.querySelector("nav");
   toggle.onclick = () => nav.classList.toggle("show");
+
+  // Publicar mensaje
+  const sendBtn = document.getElementById("sendPost");
+  const postText = document.getElementById("postText");
+  const feed = document.getElementById("feed");
+
+  sendBtn.addEventListener("click", () => {
+    const text = postText.value.trim();
+    if (text === "") {
+      alert("Por favor, escribe algo antes de publicar 😊");
+      return;
+    }
+
+    const newPost = document.createElement("div");
+    newPost.classList.add("post");
+    newPost.innerHTML = `
+      <div class="post-user">Tú 😎</div>
+      <p>${text}</p>
+      <div class="muted" style="margin-top:6px;">Justo ahora</div>
+    `;
+
+    // Insertar el nuevo post al inicio del feed
+    feed.prepend(newPost);
+
+    // Limpiar el campo
+    postText.value = "";
+  });
 </script>
 
 </body>
