@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CertiWork — Administración de Empresas (Curso)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1: #071022;
+      --bg-2: #071726;
+      --card: #0b1220;
+      --muted: #9aa6b2;
+      --text: #e6eef6;
+      --glass: rgba(255,255,255,0.03);
+      --accent: #06b6d4;
+      --accent-2: #ff6b6b;
+      --radius:14px;
+      --container:1150px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 100%);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--container);margin:36px auto;padding:24px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{width:56px;height:56px;border-radius:12px;object-fit:contain}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted)}
+    nav a.active{background:var(--glass);color:white}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:22px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:28px;border-radius:18px}
+    .course-title{font-size:28px;margin:0 0 10px}
+    .subtitle{color:var(--muted);font-size:15px;margin-bottom:16px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+    .tag{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px;color:var(--muted)}
+
+    .sidebar{background:var(--card);padding:20px;border-radius:16px;display:flex;flex-direction:column;gap:12px}
+    .price{font-size:24px;font-weight:800}
+    .buy{padding:12px;border-radius:12px;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#071022;text-align:center;font-weight:700;cursor:pointer;border:none}
+    .buy:active{transform:translateY(1px)}
+
+    .section{margin-top:26px}
+    .curriculum{display:flex;flex-direction:column;gap:10px}
+    .lesson{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .time{color:var(--muted);font-size:13px}
+
+    .instructor{display:flex;gap:14px;align-items:center;margin-top:8px}
+    .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,#111827,#0b1220);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px}
+
+    .reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .card{background:var(--glass);padding:16px;border-radius:12px}
+
+    footer{margin-top:36px;text-align:center;color:var(--muted);padding:20px 0;font-size:14px}
+
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.reviews{grid-template-columns:1fr}}
+    @media (max-width:560px){nav{display:none}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <img src="img/certiwork-logo.png" alt="CertiWork">
+    <div>
+      <div style="font-weight:800">CertiWork</div>
+      <div class="muted" style="font-size:12px">Cursos — Administración de Empresas</div>
+    </div>
+  </div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="cursos.html" class="active">Cursos</a>
+    <a href="#">Comunidad</a>
+    <a href="#">Iniciar sesión</a>
+  </nav>
+</header>
+
+<main>
+
+<div class="hero">
+  <section class="hero-card">
+    <div class="muted" style="font-size:14px">Curso • 6h • Sin experiencia previa</div>
+    <h1 class="course-title">Administración de Empresas</h1>
+    <p class="subtitle">
+      Comprende cómo funciona una organización moderna, toma decisiones estratégicas
+      y aprende a gestionar personas, procesos y recursos para crear empresas sostenibles
+      y competitivas.
+    </p>
+
+    <div class="live-info" style="
+            margin:14px 0 18px;
+            background:rgba(255,255,255,0.05);
+            padding:10px 14px;
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-size:14px;
+            font-weight:600;
+            color:var(--accent);
+          ">
+            <span style="font-size:18px;">📡</span>
+            <a href="https://meet.google.com/" target="_blank" style="color:var(--accent); text-decoration:none;">
+              Clases en vivo — Únete desde Google Meet
+            </a>
+      </div>
+
+    <div class="tags">
+      <span class="tag">Gestión</span>
+      <span class="tag">Liderazgo</span>
+      <span class="tag">Negocios</span>
+      <span class="tag">Emprendimiento</span>
+    </div>
+
+    <div class="section">
+      <h3>¿Qué aprenderás?</h3>
+      <ul class="muted" style="padding-left:18px;line-height:1.6">
+        <li>Principios fundamentales de administración moderna.</li>
+        <li>Cómo organizar, planificar y dirigir equipos de trabajo.</li>
+        <li>Análisis estratégico y toma de decisiones empresariales.</li>
+        <li>Cómo estructurar y optimizar un negocio real.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Temario</h3>
+      <div class="curriculum">
+        <div class="lesson"><div>1. Introducción a la Gestión Empresarial</div><div class="time">15 min</div></div>
+        <div class="lesson"><div>2. Planificación y Organización</div><div class="time">38 min</div></div>
+        <div class="lesson"><div>3. Liderazgo y Dirección de Equipos</div><div class="time">50 min</div></div>
+        <div class="lesson"><div>4. Control y Optimización</div><div class="time">45 min</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Instructor</h3>
+      <div class="instructor">
+        <div class="avatar">MR</div>
+        <div>
+          <strong>María Ruiz</strong>
+          <div class="muted">Administradora & Consultora Empresarial</div>
+          <p class="muted" style="margin-top:8px">Ha asesorado negocios y emprendedores en crecimiento sostenible y gestión efectiva.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="sidebar">
+    <div class="muted">Nivel: Principiante</div>
+    <div class="price">S/ 169</div>
+    <div class="muted">Acceso de por vida • Certificado</div>
+    <button class="buy" id="buy-btn">Comprar curso</button>
+  </aside>
+</div>
+
+<section class="section">
+  <h3>Reseñas</h3>
+  <div class="reviews">
+    <div class="card">
+      <strong>Sofía</strong>
+      <div class="muted">⭐️⭐️⭐️⭐️⭐️</div>
+      <p class="muted">Me ayudó a entender cómo organizar mi emprendimiento correctamente.</p>
+    </div>
+    <div class="card">
+      <strong>Carlos</strong>
+      <div class="muted">⭐️⭐️⭐️⭐️</div>
+      <p class="muted">Buen enfoque práctico y directo.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  CertiWork © 2025 — Formación con futuro.
+</footer>
+
+</main>
+
+<script>
+document.getElementById("buy-btn").onclick = () => {
+  if(confirm("Vas a comprar 'Administración de Empresas' por S/169. ¿Continuar?")){
+    alert("Demo: aquí irá tu pasarela de pago.");
+  }
+}
+</script>
+
+</body>
+</html>
+
+
+
+

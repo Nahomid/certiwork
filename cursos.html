@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cursos | CertiWork</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa6b2;
+      --accent:#ff6b6b;
+      --accent-2:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      font-family: 'Inter', sans-serif;
+    }
+    body{margin:0;background:linear-gradient(180deg,#071022 0%, #071726 100%);color:#e6eef6}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1150px;margin:0 auto;padding:24px}
+
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;border-radius:12px}
+    nav{display:flex;gap:18px}
+    nav a{color:var(--muted);font-weight:600}
+    nav a:hover{color:white}
+
+    .courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+    .course-card{background:var(--glass);border-radius:14px;padding:14px;transition:0.25s;cursor:pointer}
+    .course-card:hover{transform:translateY(-4px);background:rgba(255,255,255,0.07)}
+    .course-card img{width:100%;border-radius:10px;height:150px;object-fit:cover}
+    .course-card h3{margin:10px 0 4px;font-size:18px}
+    .muted{color:var(--muted);font-size:14px}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <img src="img/certiwork-logo.png" class="logo" />
+      <strong>CertiWork</strong>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="cursos.html" style="color:white">Cursos</a>
+      <a href="comunidad.html">Comunidad</a>
+      <a href="login.html">Iniciar sesión</a>
+    </nav>
+  </header>
+
+  <h1 style="margin-bottom:24px">Cursos disponibles</h1>
+
+  <div class="courses-grid">
+    <a href="curso1.html" class="course-card">
+      <img src="img/curso1.png" />
+      <h3>Marketing Digital</h3>
+      <div class="muted">Principiante · 4h</div>
+    </a>
+
+    <a href="curso2.html" class="course-card">
+      <img src="img/curso2.png" />
+      <h3>Desarrollo de Software Básico</h3>
+      <div class="muted">Intermedio · 6h</div>
+    </a>
+
+    <a href="curso3.html" class="course-card">
+      <img src="img/curso3.png" />
+      <h3>Administración de Empresas</h3>
+      <div class="muted">Avanzado · 8h</div>
+    </a>
+
+    <a href="curso4.html" class="course-card">
+      <img src="img/curso4.png" />
+      <h3>BIM Management</h3>
+      <div class="muted">Avanzado · 8h</div>
+    </a>
+
+    <a href="curso5.html" class="course-card">
+      <img src="img/curso5.png" />
+      <h3>Emprendimiento y Finanzas Personales</h3>
+      <div class="muted">Avanzado · 8h</div>
+    </a>
+    
+  </div>
+</div>
+</body>
+</html>

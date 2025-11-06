@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CertiWork — BIM Management (Curso)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1: #071022;
+      --bg-2: #071726;
+      --card: #0b1220;
+      --muted: #9aa6b2;
+      --text: #e6eef6;
+      --glass: rgba(255,255,255,0.03);
+      --accent: #06b6d4;
+      --accent-2: #ff6b6b;
+      --radius:14px;
+      --container:1150px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text)}
+    .wrap{max-width:var(--container);margin:36px auto;padding:24px}
+
+    a{text-decoration:none;color:inherit}
+
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{width:56px;height:56px;border-radius:12px}
+    .muted{color:var(--muted)}
+
+    nav{display:flex;gap:12px}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted)}
+    nav a.active{color:white;background:var(--glass)}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:26px}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);padding:28px;border-radius:16px}
+
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+    .tag{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.05);font-size:13px;color:var(--muted);font-weight:600}
+
+    .sidebar{background:var(--card);padding:20px;border-radius:14px;display:flex;flex-direction:column;gap:12px}
+    .price{font-size:26px;font-weight:800}
+    .cta{padding:14px;border-radius:12px;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#071022;font-weight:700;text-align:center;cursor:pointer}
+
+    h3{margin-top:26px}
+    ul{padding-left:20px;line-height:1.6}
+
+    .lesson{display:flex;justify-content:space-between;margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.03)}
+    .time{color:var(--muted);font-size:13px}
+
+    .instructor{display:flex;gap:14px;margin-top:12px}
+    .avatar{width:64px;height:64px;border-radius:12px;background:#111827;display:flex;align-items:center;justify-content:center;font-weight:700}
+
+    footer{text-align:center;margin-top:40px;color:var(--muted);padding:20px 0}
+
+    @media(max-width:960px){.hero{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <img src="img/certiwork-logo.png" alt="CertiWork">
+    <div>
+      <strong>CertiWork</strong>
+      <div class="muted" style="font-size:12px">BIM Management</div>
+    </div>
+  </div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="cursos.html" class="active">Cursos</a>
+    <a href="#">Comunidad</a>
+    <a href="#">Iniciar sesión</a>
+  </nav>
+</header>
+
+<main>
+<div class="hero">
+  <section class="hero-card">
+    <div class="muted" style="font-size:14px">Curso • 7h • Desde nivel base</div>
+    <h1 style="margin:6px 0 10px">BIM Management (Gestión de Modelos Digitales)</h1>
+    <p class="muted" style="font-size:15px">
+      Aprende a coordinar, gestionar y estandarizar proyectos de construcción y arquitectura utilizando metodología BIM. 
+      Domina el flujo de trabajo digital, la interoperabilidad y el control de modelos 3D colaborativos.
+    </p>
+
+    <div class="live-info" style="
+            margin:14px 0 18px;
+            background:rgba(255,255,255,0.05);
+            padding:10px 14px;
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-size:14px;
+            font-weight:600;
+            color:var(--accent);
+          ">
+            <span style="font-size:18px;">📡</span>
+            <a href="https://meet.google.com/" target="_blank" style="color:var(--accent); text-decoration:none;">
+              Clases en vivo — Únete desde Google Meet
+            </a>
+      </div>
+
+
+
+    <div class="tags">
+      <span class="tag">Arquitectura</span>
+      <span class="tag">Construcción</span>
+      <span class="tag">Proyectos</span>
+      <span class="tag">Revit / IFC</span>
+      <span class="tag">Coordinación BIM</span>
+    </div>
+
+    <h3>¿Qué aprenderás?</h3>
+    <ul class="muted">
+      <li>Fundamentos de la metodología BIM y su impacto en obra y diseño.</li>
+      <li>Estructurar, coordinar y estandarizar modelos 3D en equipos.</li>
+      <li>Gestión del flujo de datos: Revit, Navisworks, IFC y Common Data Environment.</li>
+      <li>Análisis y resolución de interferencias (clash detection).</li>
+    </ul>
+
+    <h3>Temario del curso</h3>
+    <div class="lesson"><div>1. Qué es BIM y por qué importa</div><div class="time">20 min</div></div>
+    <div class="lesson"><div>2. Roles, niveles y estándares BIM</div><div class="time">42 min</div></div>
+    <div class="lesson"><div>3. Coordinación interdisciplinaria</div><div class="time">55 min</div></div>
+    <div class="lesson"><div>4. Clash Detection y control de calidad</div><div class="time">48 min</div></div>
+    <div class="lesson"><div>5. Entorno de Datos Común (CDE)</div><div class="time">33 min</div></div>
+
+    <h3>Instructor</h3>
+    <div class="instructor">
+      <div class="avatar">KR</div>
+      <div>
+        <strong>Arq. Karol Rivas</strong><br>
+        <span class="muted">BIM Manager Senior — Gestión de proyectos públicos y privados</span>
+        <p class="muted" style="margin-top:6px">Ha liderado coordinación BIM en obras hospitalarias, educativas e infraestructura urbana.</p>
+      </div>
+    </div>
+  </section>
+
+  <aside class="sidebar">
+    <div class="muted">Nivel: Intermedio</div>
+    <div class="price">S/ 249</div>
+    <div class="muted">Acceso de por vida • Certificado PDF</div>
+    <div class="cta" id="buy-btn">Comprar curso</div>
+  </aside>
+</div>
+
+<footer>CertiWork © 2025 — Formación con visión de futuro.</footer>
+
+</main>
+
+<script>
+document.getElementById("buy-btn").onclick = () => {
+  alert("Demo: aquí se integrará tu pasarela de pago.");
+}
+</script>
+
+</body>
+</html>
