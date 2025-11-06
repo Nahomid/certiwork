@@ -37,8 +37,19 @@
       text-align:center;
     }
 
+    .brand{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      font-weight:800;
+      font-size:20px;
+      margin-bottom:10px;
+      cursor:pointer;
+      color:white;
+    }
+
     .brand img{
-      width:68px;height:68px;border-radius:14px;margin-bottom:10px;
+      width:68px;height:68px;border-radius:14px;margin-bottom:8px;
     }
 
     h2{margin-bottom:24px;font-weight:800;}
@@ -56,7 +67,6 @@
     }
     .cta:hover{opacity:0.9;transform:translateY(-2px);}
 
-    /* BOTÓN GOOGLE */
     .google-btn{
       margin-top:15px;
       width:100%;
@@ -89,6 +99,14 @@
       color:var(--muted);
     }
     .links a{color:var(--accent);text-decoration:none;font-weight:600;}
+
+    /* RESPONSIVE */
+    @media(max-width:520px){
+      .login-box{padding:28px;}
+      .brand img{width:58px;height:58px;}
+      .cta, .google-btn{font-size:15px;padding:13px;}
+    }
+
   </style>
 </head>
 
@@ -96,7 +114,7 @@
 
 <div class="login-box">
 
-  <div class="brand" onclick="window.location.href='index.html'" style="cursor:pointer;">
+  <div class="brand" onclick="window.location.href='index.html'">
     <img src="certiwork-logo.png" alt="CertiWork">
     CertiWork
   </div>
@@ -117,20 +135,17 @@
   </a>
 
   <div class="links">
-    ¿No tienes cuenta? <a href="https://accounts.google.com/signin">Crear cuenta</a>
+    ¿No tienes cuenta? <a href="https://accounts.google.com/signup">Crear cuenta</a>
   </div>
 
 </div>
 
 <script>
-  // LOGIN NORMAL (el tuyo)
   document.getElementById("loginForm").addEventListener("submit", e=>{
     e.preventDefault();
-    // Aquí seguirá Firebase si lo usas. No lo tocamos.
     window.location.href="cursos.html";
   });
 </script>
 
 </body>
 </html>
-
