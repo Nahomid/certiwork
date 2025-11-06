@@ -107,10 +107,11 @@
 <div class="wrap">
 
 <header>
-  <div class="brand">
+  <div class="brand" onclick="window.location.href='index.html'" style="cursor:pointer;">
     <img src="certiwork-logo.png" alt="CertiWork">
     CertiWork
   </div>
+
 
   <button id="toggleMenu">≡</button>
 
@@ -146,7 +147,7 @@
   </div>
 
   <div class="post">
-    <div class="post-user">Tú 😎</div>
+    <div class="post-user">Tú</div>
     <p>Aquí aparecerán tus publicaciones.</p>
     <div class="muted" style="margin-top:6px;">Ahora mismo</div>
   </div>
@@ -177,7 +178,7 @@
     const newPost = document.createElement("div");
     newPost.classList.add("post");
     newPost.innerHTML = `
-      <div class="post-user">Tú 😎</div>
+      <div class="post-user">Tú</div>
       <p>${text}</p>
       <div class="muted" style="margin-top:6px;">Justo ahora</div>
     `;
@@ -192,3 +193,4 @@
 
 </body>
 </html>
+
