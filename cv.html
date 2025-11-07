@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador CV Dashboard | CertiWork</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1724;
+  --card:#141c2b;
+  --muted:#9aa6b2;
+  --accent:#06b6d4;
+  --btn-gradient: linear-gradient(135deg, #06b6d4, #3b82f6);
+  font-family:'Inter',sans-serif;
+}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#071022 0%, #071726 100%);
+  color:#e6eef6;
+}
+a{text-decoration:none;color:inherit;cursor:pointer;}
+.container{max-width:1100px;margin:0 auto;padding:24px;}
+header{
+  display:flex; justify-content:flex-start; align-items:center; gap:16px; margin-bottom:30px;
+}
+.logo{width:50px;border-radius:12px;cursor:pointer;}
+h1{font-size:28px;margin-bottom:30px;text-align:center;}
+h2{color:var(--accent);margin-bottom:12px;}
+
+/* Flex Layout */
+.flex-container{display:flex;gap:20px;flex-wrap:wrap;}
+.flex-left, .flex-right{flex:1;min-width:300px;}
+
+/* Formulario */
+.section{background:var(--card);padding:20px;border-radius:16px;box-shadow:0 4px 15px rgba(0,0,0,0.5);}
+input, textarea{
+  width:100%;
+  padding:14px 16px;
+  margin-bottom:12px;
+  border-radius:12px;
+  border:1px solid #333;
+  background:var(--card);
+  color:white;
+  font-size:14px;
+  box-sizing:border-box;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+input:focus, textarea:focus{
+  border:1px solid var(--accent);
+  box-shadow: 0 0 8px rgba(6,182,212,0.6);
+  outline:none;
+}
+textarea{resize:none;}
+
+/* Botones */
+.btn{display:inline-block;padding:10px 20px;border:none;border-radius:12px;background:var(--btn-gradient);color:white;font-weight:600;cursor:pointer;transition:0.3s;margin-top:10px;width:100%;}
+.btn:hover{transform:scale(1.05);box-shadow:0 6px 15px rgba(59,130,246,0.6);}
+
+/* CV Preview */
+.cv-template{
+  background:#1e2636;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.5);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.cv-template h2{
+  margin:0;
+  border-bottom:2px solid #06b6d4;
+  padding-bottom:8px;
+  text-align:center;
+  color:#06b6d4;
+}
+.cv-section{
+  background:rgba(255,255,255,0.05);
+  padding:10px 12px;
+  border-radius:10px;
+}
+.cv-section strong{display:block;color:#06b6d4;margin-bottom:4px;}
+.cv-section p{margin:0;color:#cbd5e1;}
+
+/* PDF Template hidden */
+#cvPDF{display:none;background:white;color:black;padding:20px;font-family:'Inter',sans-serif;}
+#cvPDF h2{border-bottom:1px solid #ccc;padding-bottom:6px;margin-bottom:12px;}
+#cvPDF .cv-section{margin-bottom:12px;}
+#cvPDF .cv-section strong{display:block; margin-bottom:4px;}
+
+/* Footer */
+footer{text-align:center;padding:40px 0 20px;font-size:14px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.07);margin-top:40px;}
+
+/* Responsive */
+@media(max-width:768px){
+  .flex-container{flex-direction:column;}
+  h1{font-size:24px;}
+  .section{padding:16px;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <img src="certiwork-logo.png" alt="Logo" class="logo" onclick="window.location.href='index.html'">
+  <h1>Simulador de CV Dashboard</h1>
+</header>
+
+<div class="flex-container">
+
+<!-- Columna Formulario -->
+<div class="flex-left section">
+  <h2>Rellena tus datos</h2>
+  <input type="text" id="nombre" placeholder="Nombre completo">
+  <input type="number" id="edad" placeholder="Edad">
+  <input type="email" id="correo" placeholder="Correo electrónico">
+  <input type="text" id="telefono" placeholder="Teléfono">
+  <input type="text" id="curso" placeholder="Curso completado">
+  <textarea id="experiencia" rows="3" placeholder="Experiencia laboral"></textarea>
+  <input type="text" id="habilidades" placeholder="Habilidades (separadas por coma)">
+  <button class="btn" onclick="actualizarCV()">Actualizar Vista</button>
+  <button class="btn" onclick="descargarCV()">Descargar PDF</button>
+  <button class="btn" onclick="window.location.href='index.html'">Contactar Empresas</button>
+</div>
+
+<!-- Columna CV Preview -->
+<div class="flex-right section">
+  <h2>Vista Previa del CV</h2>
+  <div class="cv-template" id="cvPreview">
+    <h2>Currículum Vitae</h2>
+    <div class="cv-section"><strong>Nombre:</strong><p id="resNombre">Tu nombre aquí</p></div>
+    <div class="cv-section"><strong>Edad:</strong><p id="resEdad">---</p></div>
+    <div class="cv-section"><strong>Correo:</strong><p id="resCorreo">---</p></div>
+    <div class="cv-section"><strong>Teléfono:</strong><p id="resTelefono">---</p></div>
+    <div class="cv-section"><strong>Curso Completado:</strong><p id="resCurso">---</p></div>
+    <div class="cv-section"><strong>Experiencia Laboral:</strong><p id="resExperiencia">---</p></div>
+    <div class="cv-section"><strong>Habilidades:</strong><p id="resHabilidades">---</p></div>
+  </div>
+</div>
+
+</div>
+
+<!-- PDF Template -->
+<div id="cvPDF">
+  <h2>Currículum Vitae</h2>
+  <div class="cv-section"><strong>Nombre:</strong><span id="pdfNombre"></span></div>
+  <div class="cv-section"><strong>Edad:</strong><span id="pdfEdad"></span></div>
+  <div class="cv-section"><strong>Correo:</strong><span id="pdfCorreo"></span></div>
+  <div class="cv-section"><strong>Teléfono:</strong><span id="pdfTelefono"></span></div>
+  <div class="cv-section"><strong>Curso Completado:</strong><span id="pdfCurso"></span></div>
+  <div class="cv-section"><strong>Experiencia Laboral:</strong><span id="pdfExperiencia"></span></div>
+  <div class="cv-section"><strong>Habilidades:</strong><span id="pdfHabilidades"></span></div>
+</div>
+
+<footer>
+  © 2025 CertiWork — Formación con visión profesional.
+</footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+function actualizarCV(){
+  const nombre = document.getElementById('nombre').value;
+  const edad = document.getElementById('edad').value;
+  const correo = document.getElementById('correo').value;
+  const telefono = document.getElementById('telefono').value;
+  const curso = document.getElementById('curso').value;
+  const experiencia = document.getElementById('experiencia').value;
+  const habilidades = document.getElementById('habilidades').value;
+
+  document.getElementById('resNombre').textContent = nombre || "Tu nombre aquí";
+  document.getElementById('resEdad').textContent = edad || "---";
+  document.getElementById('resCorreo').textContent = correo || "---";
+  document.getElementById('resTelefono').textContent = telefono || "---";
+  document.getElementById('resCurso').textContent = curso || "---";
+  document.getElementById('resExperiencia').textContent = experiencia || "---";
+  document.getElementById('resHabilidades').textContent = habilidades || "---";
+
+  document.getElementById('pdfNombre').textContent = nombre;
+  document.getElementById('pdfEdad').textContent = edad;
+  document.getElementById('pdfCorreo').textContent = correo;
+  document.getElementById('pdfTelefono').textContent = telefono;
+  document.getElementById('pdfCurso').textContent = curso;
+  document.getElementById('pdfExperiencia').textContent = experiencia;
+  document.getElementById('pdfHabilidades').textContent = habilidades;
+}
+
+function descargarCV(){
+  const element = document.getElementById('cvPDF');
+  html2pdf().set({margin:0.5, filename:'Mi_CV_CertiWork.pdf', html2canvas:{scale:2}}).from(element).save();
+}
+</script>
+
+</body>
+</html>
