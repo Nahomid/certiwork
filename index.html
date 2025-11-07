@@ -1,134 +1,304 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Inicio | CertiWork</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#9aa6b2;
-      --accent:#ff6b6b;
-      --accent-2:#06b6d4;
-      --glass: rgba(255,255,255,0.05);
-      font-family: 'Inter', sans-serif;
-    }
-    body{
-      margin:0;
-      background:linear-gradient(180deg,#071022 0%, #071726 100%);
-      color:#e6eef6;
-    }
-    a{text-decoration:none;color:inherit}
-    .container{max-width:1150px;margin:0 auto;padding:24px}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Inicio | CertiWork</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --muted:#9aa6b2;
+  --accent:#ff6b6b;
+  --accent-2:#06b6d4;
+  --glass: rgba(255,255,255,0.05);
+  font-family: 'Inter', sans-serif;
+}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#071022 0%, #071726 100%);
+  color:#e6eef6;
+}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:0 auto;padding:24px}
 
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding-top:12px;
-      margin-bottom:30px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .logo{
-      width:56px;
-      border-radius:12px;
-    }
-    nav{display:flex;gap:18px}
-    nav a{
-      color:var(--muted);
-      font-weight:600;
-      transition:0.25s;
-    }
-    nav a:hover{color:white}
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:50px;
+  position:relative;
+}
+.brand{display:flex;align-items:center;gap:14px;cursor:pointer}
+.logo{width:60px;border-radius:12px}
+nav{display:flex;gap:22px;align-items:center;}
+nav a{
+  color:var(--muted);
+  font-weight:600;
+  padding:8px 14px;
+  border-radius:12px;
+}
+nav a.active, nav a:hover{color:white;background:var(--glass);}
+.menu-btn{
+  display:none;
+  font-size:30px;
+  cursor:pointer;
+  background:none;
+  border:none;
+  color:white;
+}
 
-    /* HERO */
-    .hero{
-      text-align:center;
-      padding:140px 24px;
-      border-radius:22px;
-      background:linear-gradient(rgba(7,13,22,0.85), rgba(7,13,22,0.88)),
-      url('curso4.png') center/cover no-repeat;
-      background-size:cover;
-      margin-bottom:60px;
-      animation:fadeHero 1s ease forwards;
-    }
+/* HERO */
+.hero{
+  text-align:center;
+  padding:160px 48px 100px;
+  border-radius:22px;
+  background:linear-gradient(rgba(7,13,22,0.85), rgba(7,13,22,0.88)),
+  url('img/curso4.png') center/cover no-repeat;
+}
+.hero h1{
+  font-size:52px;
+  margin-bottom:16px;
+  font-weight:800;
+}
+.hero p{
+  max-width:700px;
+  margin:0 auto 36px;
+  color:var(--muted);
+  font-size:20px;
+  line-height:1.6;
+}
+.btn{
+  background:var(--accent-2);
+  padding:16px 36px;
+  border-radius:12px;
+  font-weight:700;
+  display:inline-block;
+  transition:0.3s;
+}
+.btn:hover{opacity:0.92; transform:scale(1.03);}
 
-    @keyframes fadeHero{
-      from{opacity:0; transform:translateY(14px);}
-      to{opacity:1; transform:translateY(0);}
-    }
+/* SECCION DE CURSOS DESTACADOS */
+.section{
+  margin-bottom:70px;
+}
+.section h2{
+  font-size:32px;
+  margin-bottom:32px;
+  text-align:center;
+}
+.courses-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+.course-card{
+  background:var(--glass);
+  border-radius:16px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.course-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 8px 25px rgba(0,0,0,0.5);
+}
+.course-card img{
+  width:100%;
+  border-radius:12px;
+  height:180px;
+  object-fit:cover;
+}
+.course-card h3{margin:12px 0 6px;font-size:20px;}
+.muted{color:var(--muted);font-size:14px}
 
-    .hero h1{
-      font-size:46px;
-      margin-bottom:14px;
-      font-weight:800;
-    }
-    .hero p{
-      max-width:600px;
-      margin:0 auto 32px;
-      color:var(--muted);
-      font-size:18px;
-      line-height:1.5;
-    }
-    .btn{
-      background:var(--accent-2);
-      padding:14px 32px;
-      border-radius:12px;
-      font-weight:700;
-      display:inline-block;
-      transition:0.3s;
-    }
-    .btn:hover{
-      transform:translateY(-3px);
-      opacity:0.92;
-    }
+/* SECCION BENEFICIOS */
+.benefits{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  margin-bottom:80px;
+}
+.benefit{
+  background:var(--card);
+  border-radius:20px;
+  padding:30px 20px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 4px 15px rgba(0,0,0,0.5);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+.benefit:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.7);
+}
+.benefit h4{
+  margin-bottom:10px;
+  font-size:24px;
+  font-weight:700;
+  color:var(--accent-2);
+}
+.benefit p{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.6;
+  margin-bottom:15px;
+}
+.benefit button{
+  padding:10px 20px;
+  border:none;
+  border-radius:12px;
+  background:var(--accent-2);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+  width:100%;
+}
+.benefit button:hover{
+  transform:scale(1.05);
+  box-shadow:0 6px 15px rgba(6,182,212,0.6);
+}
 
-    /* FOOTER */
-    footer{
-      text-align:center;
-      padding:40px 0 10px;
-      margin-top:40px;
-      font-size:14px;
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,0.07);
-    }
-  </style>
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:50px 0 20px;
+  font-size:14px;
+  color:var(--muted);
+  border-top:1px solid rgba(255,255,255,0.07);
+  background:linear-gradient(to top, rgba(255,255,255,0.01), transparent);
+}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .courses-grid{grid-template-columns:1fr 1fr;}
+  .benefits{grid-template-columns:1fr 1fr;}
+  .hero h1{font-size:44px;}
+  .hero p{font-size:18px; max-width:600px;}
+}
+@media(max-width:768px){
+  .courses-grid{grid-template-columns:1fr;}
+  .benefits{grid-template-columns:1fr;}
+  .hero h1{font-size:38px;}
+  .hero p{font-size:16px; max-width:100%;}
+  nav{
+    position:absolute;
+    top:64px;
+    right:24px;
+    background:var(--glass);
+    backdrop-filter:blur(8px);
+    padding:14px;
+    border-radius:12px;
+    display:none;
+    flex-direction:column;
+    gap:8px;
+    align-items:flex-start;
+    text-align:left;
+  }
+  nav.show{display:flex;}
+  .menu-btn{display:flex;}
+}
+</style>
 </head>
 <body>
 <div class="container">
 
-  <header>
-    <div class="brand">
-      <img src="certiwork-logo.png" class="logo" />
-      <strong>CertiWork</strong>
+<header>
+  <div class="brand" onclick="window.location.href='index.html'">
+    <img src="certiwork-logo.png" class="logo" alt="CertiWork">
+    <strong>CertiWork</strong>
+  </div>
+  <button id="menu-btn" class="menu-btn">☰</button>
+  <nav>
+    <a href="index.html" class="active">Inicio</a>
+    <a href="cursos.html">Cursos</a>
+    <a href="comunidad.html">Comunidad</a>
+    <a href="login.html">Iniciar sesión</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Aprende, Certifícate y Avanza</h1>
+  <p>Potencia tu futuro con cursos prácticos, accesibles y certificados. Desarrolla habilidades reales que el mercado laboral está buscando ahora mismo.</p>
+  <a href="cursos.html" class="btn">Ver cursos disponibles</a>
+</section>
+
+<!-- CURSOS DESTACADOS -->
+<section class="section">
+  <h2>Cursos Destacados</h2>
+  <div class="courses-grid">
+    <a href="curso1.html" class="course-card">
+      <img src="curso1.png" alt="Marketing Digital"/>
+      <h3>Marketing Digital</h3>
+      <div class="muted">Principiante · 4h</div>
+    </a>
+    <a href="curso2.html" class="course-card">
+      <img src="curso2.png" alt="Desarrollo de Software Básico"/>
+      <h3>Desarrollo de Software Básico</h3>
+      <div class="muted">Intermedio · 6h</div>
+    </a>
+    <a href="curso3.html" class="course-card">
+      <img src="curso3.png" alt="Administración de Empresas"/>
+      <h3>Administración de Empresas</h3>
+      <div class="muted">Avanzado · 8h</div>
+    </a>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="section">
+  <h2>¿Por qué elegir CertiWork?</h2>
+  <div class="benefits">
+    <div class="benefit">
+      <h4>Certificados</h4>
+      <p>Todos los cursos incluyen certificación digital reconocida.</p>
+      <button onclick="verCertificado('Certificado Marketing Digital', 'Marketing Digital', 'Principiante · 4h')">Ver Certificado</button>
     </div>
-    <nav>
-      <a href="index.html" style="color:white">Inicio</a>
-      <a href="cursos.html">Cursos</a>
-      <a href="comunidad.html">Comunidad</a>
-      <a href="login.html">Iniciar sesión</a>
-    </nav>
-  </header>
+    <div class="benefit">
+      <h4>Aprendizaje Práctico</h4>
+      <p>Ejercicios y casos reales para aplicar tus conocimientos.</p>
+      <button onclick="window.location.href='aprendizaje.html'">Ir a Lecciones</button>
+    </div>
+    <div class="benefit">
+      <h4>Conecta con empresas</h4>
+      <p>Accede a los cursos siempre que quieras, sin límites de tiempo.</p>
+      <button onclick="window.location.href='cv.html'">Crear CV</button>
+    </div>
+  </div>
+</section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Aprende, Certifícate y Avanza</h1>
-    <p>Potencia tu futuro con cursos prácticos, accesibles y certificados. 
-    Desarrolla habilidades reales que el mercado laboral está buscando ahora mismo.</p>
-    <a href="cursos.html" class="btn">Ver cursos disponibles</a>
-  </section>
-
-  <footer>
-    © 2025 CertiWork — Formación con visión profesional.
-  </footer>
+<footer>
+  © 2025 CertiWork — Formación con visión profesional.
+</footer>
 
 </div>
+
+<script>
+const menuBtn = document.getElementById("menu-btn");
+const nav = document.querySelector("nav");
+menuBtn.addEventListener("click", () => {
+  nav.classList.toggle("show");
+});
+
+function verCertificado(tituloCert, nombreCurso, duracion) {
+  localStorage.setItem('certTitulo', tituloCert);
+  localStorage.setItem('certCurso', nombreCurso);
+  localStorage.setItem('certDuracion', duracion);
+  window.location.href = 'certificado.html';
+}
+</script>
+
 </body>
 </html>
 
