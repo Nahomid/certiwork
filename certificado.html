@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Certificado | CertiWork</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#0f1724;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+}
+
+.certificate-container{
+  background:#141c2b;
+  border-radius:20px;
+  padding:40px 50px;
+  max-width:850px;
+  width:100%;
+  text-align:center;
+  border:2px solid #06b6d4;
+  position:relative;
+}
+
+.certificate-header{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:40px;
+}
+.certificate-header img{
+  width:90px;
+  filter: drop-shadow(0 0 8px #06b6d4);
+}
+
+.certificate-title{
+  font-size:36px;
+  font-weight:700;
+  color:#06b6d4;
+  margin-bottom:24px;
+}
+
+.certificate-body h2{
+  font-size:24px;
+  margin-bottom:12px;
+  color:#fff;
+}
+.certificate-body p{
+  font-size:16px;
+  color:#9aa6b2;
+  line-height:1.6;
+  margin-bottom:8px;
+}
+
+.certificate-footer{
+  margin-top:40px;
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  flex-wrap:wrap;
+}
+.certificate-footer div{
+  text-align:center;
+}
+.certificate-footer div p{
+  color:#9aa6b2;
+  margin-top:4px;
+  font-size:14px;
+  font-style:italic;
+}
+
+.btn{
+  margin-top:30px;
+  background:#06b6d4;
+  padding:14px 32px;
+  border-radius:10px;
+  font-weight:600;
+  display:inline-block;
+  color:#fff;
+  cursor:pointer;
+  transition:0.2s;
+}
+.btn:hover{opacity:0.9; transform: scale(1.03);}
+.btn-secondary{
+  background:#ff6b6b;
+}
+
+/* Responsive */
+@media(max-width:1024px){
+  .certificate-container{
+    padding:35px 40px;
+  }
+  .certificate-title{font-size:32px;}
+  .certificate-body h2{font-size:22px;}
+  .certificate-body p{font-size:15px;}
+}
+@media(max-width:768px){
+  .certificate-container{
+    padding:30px 25px;
+  }
+  .certificate-title{font-size:28px;}
+  .certificate-body h2{font-size:20px;}
+  .certificate-body p{font-size:14px;}
+  .certificate-footer{
+    flex-direction:column;
+    gap:20px;
+  }
+  .certificate-header img{width:70px;}
+}
+</style>
+</head>
+<body>
+
+<div class="certificate-container">
+  <!-- Header -->
+  <div class="certificate-header">
+    <img src="certiwork-logo.png" alt="CertiWork Logo">
+  </div>
+
+  <!-- Title -->
+  <div class="certificate-title">Certificado de Finalización</div>
+
+  <!-- Body -->
+  <div class="certificate-body">
+    <h2 id="nombreEstudiante">Nombre del Estudiante: Juan Pérez</h2>
+    <p id="nombreCurso">Curso: Marketing Digital</p>
+    <p id="duracionCurso">Duración: 4h · Principiante</p>
+    <p id="fechaCertificado">Fecha: 6 de Noviembre, 2025</p>
+    <p>Este certificado acredita que el estudiante ha completado satisfactoriamente el curso seleccionado en CertiWork.</p>
+  </div>
+
+  <!-- Footer / Firma simulada -->
+  <div class="certificate-footer">
+    <div>
+      <strong>Instructor</strong>
+      <p>Anthony Zapata</p>
+    </div>
+    <div>
+      <strong>Director</strong>
+      <p>Karol Rivas</p>
+    </div>
+  </div>
+
+  <!-- Botones -->
+  <div style="margin-top:30px;">
+    <div class="btn" onclick="descargarPDF()">Descargar PDF</div>
+    <div class="btn btn-secondary" onclick="window.history.back()">Volver</div>
+  </div>
+</div>
+
+<script>
+function descargarPDF() {
+  alert("Simulación: Se descargaría el PDF del certificado con los datos actuales.");
+}
+
+// Datos simulados
+const nombreCurso = localStorage.getItem('certCurso') || "Marketing Digital";
+const duracionCurso = localStorage.getItem('certDuracion') || "4h · Principiante";
+document.getElementById('nombreCurso').innerText = "Curso: " + nombreCurso;
+document.getElementById('duracionCurso').innerText = "Duración: " + duracionCurso;
+
+document.getElementById('nombreEstudiante').innerText = "Nombre del Estudiante: Juan Pérez";
+const fecha = new Date();
+const opciones = { day:'numeric', month:'long', year:'numeric' };
+document.getElementById('fechaCertificado').innerText = "Fecha: " + fecha.toLocaleDateString('es-PE', opciones);
+</script>
+
+</body>
+</html>
