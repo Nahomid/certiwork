@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aprendizaje | CertiWork</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1724;
+  --card:#141c2b;
+  --muted:#9aa6b2;
+  --accent:#06b6d4;
+  --accent-2:#ff6b6b;
+  --btn-gradient: linear-gradient(135deg, #06b6d4, #3b82f6);
+  font-family:'Inter',sans-serif;
+}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#071022 0%, #071726 100%);
+  color:#e6eef6;
+}
+a{text-decoration:none;color:inherit;}
+.container{max-width:1100px;margin:0 auto;padding:24px;}
+header{
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;
+}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo{width:60px;border-radius:12px}
+nav{display:flex;gap:18px;align-items:center;}
+nav a{color:var(--muted); font-weight:600; padding:6px 12px; border-radius:10px;}
+nav a.active, nav a:hover{color:white;background:rgba(255,255,255,0.05);}
+.menu-btn{display:none;font-size:28px;cursor:pointer;background:none;border:none;color:white;}
+h1{font-size:36px;margin-bottom:24px;text-align:center;}
+
+/* Dashboard Circular */
+.dashboard{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
+  margin-bottom:40px;
+}
+.progress-circle{
+  width:150px; height:150px;
+  border-radius:50%;
+  background: conic-gradient(var(--accent) 0% 0%, rgba(255,255,255,0.1) 0% 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  transition:0.5s;
+}
+.progress-circle span{
+  position:absolute;
+  font-weight:700;
+  font-size:18px;
+  text-align:center;
+}
+.progress-label{
+  text-align:center;
+  margin-top:10px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* Tarjetas */
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.5);
+  transition:0.3s;
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,0.7);}
+.card h3{margin:0 0 8px;font-size:18px;color:white;}
+.card p{margin:0 0 12px;color:var(--muted);font-size:14px;}
+.card .btn{
+  padding:10px 20px;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  background:var(--btn-gradient);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+  width:100%;
+}
+.card .btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 6px 15px rgba(59,130,246,0.6);
+}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px;}
+
+/* Acordeón para móvil */
+.accordion{
+  display:none;
+  flex-direction:column;
+  gap:15px;
+}
+.accordion .accordion-item{
+  background:var(--card);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,0.6);
+}
+.accordion .accordion-header{
+  padding:14px 16px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:white;
+  font-size:16px;
+  transition:0.3s;
+}
+.accordion .accordion-header:hover{
+  background:rgba(255,255,255,0.05);
+}
+.accordion .accordion-header::after{
+  content:'\002B';
+  font-size:20px;
+  transition:transform 0.3s ease;
+}
+.accordion .accordion-item.active .accordion-header::after{
+  transform:rotate(45deg);
+}
+.accordion .accordion-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s ease;
+  padding:0 16px;
+  color:var(--muted);
+}
+.accordion .accordion-content p{
+  margin:12px 0;
+  font-size:14px;
+  line-height:1.5;
+}
+.accordion .accordion-content button{
+  margin-bottom:12px;
+  width:100%;
+  font-size:14px;
+  padding:10px 0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#06b6d4,#3b82f6);
+  color:white;
+  font-weight:600;
+  transition:0.3s;
+}
+.accordion .accordion-content button:hover{
+  transform:scale(1.03);
+  box-shadow:0 5px 15px rgba(59,130,246,0.5);
+}
+
+/* Footer */
+footer{text-align:center;padding:40px 0 20px;font-size:14px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.07);margin-top:40px;}
+
+/* Responsive */
+@media(max-width:768px){
+  h1{font-size:28px;margin-bottom:20px;text-align:center;}
+  nav{
+    position:absolute;top:64px;right:24px;background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(10px);
+    padding:14px;
+    border-radius:12px;
+    display:none;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;
+  }
+  nav.show{display:flex;}
+  .menu-btn{display:flex;}
+
+  /* Grid desaparece, muestra acordeón */
+  .grid{display:none;}
+  .accordion{display:flex;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="brand" onclick="window.location.href='index.html'">
+    <img src="certiwork-logo.png" class="logo" alt="CertiWork">
+    <strong>CertiWork</strong>
+  </div>
+  <button id="menu-btn" class="menu-btn">☰</button>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="cursos.html">Cursos</a>
+    <a href="#" class="active">Aprendizaje</a>
+    <a href="login.html">Iniciar sesión</a>
+  </nav>
+</header>
+
+<h1>Dashboard de Aprendizaje</h1>
+
+<!-- Panel de Progreso Circular -->
+<div class="dashboard">
+  <div>
+    <div class="progress-circle" id="mod1"><span>60%</span></div>
+    <div class="progress-label">Módulo 1</div>
+  </div>
+  <div>
+    <div class="progress-circle" id="mod2"><span>40%</span></div>
+    <div class="progress-label">Módulo 2</div>
+  </div>
+  <div>
+    <div class="progress-circle" id="mod3"><span>20%</span></div>
+    <div class="progress-label">Módulo 3</div>
+  </div>
+</div>
+
+<!-- Lecciones en Vivo -->
+<section class="section">
+  <h2>Lecciones en Vivo</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Sesión 1: Introducción al Marketing Digital</h3>
+      <p>Aprende los fundamentos del marketing digital con ejercicios prácticos.</p>
+      <button class="btn" onclick="alert('Uniéndote a la sesión 1 en vivo...')">Unirse</button>
+    </div>
+    <div class="card">
+      <h3>Sesión 2: Estrategias Básicas</h3>
+      <p>Descubre estrategias efectivas para posicionar marcas y productos.</p>
+      <button class="btn" onclick="alert('Uniéndote a la sesión 2 en vivo...')">Unirse</button>
+    </div>
+    <div class="card">
+      <h3>Sesión 3: Herramientas Digitales</h3>
+      <p>Explora las herramientas digitales más usadas en marketing.</p>
+      <button class="btn" onclick="alert('Uniéndote a la sesión 3 en vivo...')">Unirse</button>
+    </div>
+  </div>
+
+  <!-- Acordeón móvil -->
+  <div class="accordion" id="lessons-accordion">
+    <div class="accordion-item">
+      <div class="accordion-header">Sesión 1: Introducción al Marketing Digital</div>
+      <div class="accordion-content">
+        <p>Aprende los fundamentos del marketing digital con ejercicios prácticos.</p>
+        <button class="btn" onclick="alert('Uniéndote a la sesión 1 en vivo...')">Unirse</button>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Sesión 2: Estrategias Básicas</div>
+      <div class="accordion-content">
+        <p>Descubre estrategias efectivas para posicionar marcas y productos.</p>
+        <button class="btn" onclick="alert('Uniéndote a la sesión 2 en vivo...')">Unirse</button>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Sesión 3: Herramientas Digitales</div>
+      <div class="accordion-content">
+        <p>Explora las herramientas digitales más usadas en marketing.</p>
+        <button class="btn" onclick="alert('Uniéndote a la sesión 3 en vivo...')">Unirse</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pruebas de Conocimiento -->
+<section class="section">
+  <h2>Exámenes en Vivo</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Examen 1: Conceptos Básicos</h3>
+      <p>Evalúa tu conocimiento sobre los conceptos fundamentales.</p>
+      <button class="btn" onclick="alert('Iniciando Examen 1 en vivo...')">Iniciar Ahora</button>
+    </div>
+    <div class="card">
+      <h3>Examen 2: Estrategias Aplicadas</h3>
+      <p>Pon a prueba tus habilidades con estrategias reales.</p>
+      <button class="btn" onclick="alert('Iniciando Examen 2 en vivo...')">Iniciar Ahora</button>
+    </div>
+    <div class="card">
+      <h3>Examen 3: Herramientas Digitales</h3>
+      <p>Comprueba tu manejo de las principales herramientas digitales.</p>
+      <button class="btn" onclick="alert('Iniciando Examen 3 en vivo...')">Iniciar Ahora</button>
+    </div>
+  </div>
+
+  <!-- Acordeón móvil -->
+  <div class="accordion" id="exams-accordion">
+    <div class="accordion-item">
+      <div class="accordion-header">Examen 1: Conceptos Básicos</div>
+      <div class="accordion-content">
+        <p>Evalúa tu conocimiento sobre los conceptos fundamentales.</p>
+        <button class="btn" onclick="alert('Iniciando Examen 1 en vivo...')">Iniciar Ahora</button>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Examen 2: Estrategias Aplicadas</div>
+      <div class="accordion-content">
+        <p>Pon a prueba tus habilidades con estrategias reales.</p>
+        <button class="btn" onclick="alert('Iniciando Examen 2 en vivo...')">Iniciar Ahora</button>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Examen 3: Herramientas Digitales</div>
+      <div class="accordion-content">
+        <p>Comprueba tu manejo de las principales herramientas digitales.</p>
+        <button class="btn" onclick="alert('Iniciando Examen 3 en vivo...')">Iniciar Ahora</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 CertiWork — Formación con visión profesional.
+</footer>
+
+</div>
+
+<script>
+const menuBtn = document.getElementById("menu-btn");
+const nav = document.querySelector("nav");
+menuBtn.addEventListener("click", () => { nav.classList.toggle("show"); });
+
+// Animación circular progresiva
+document.querySelectorAll('.progress-circle').forEach(circle=>{
+  const value = parseInt(circle.querySelector('span').textContent);
+  circle.style.background = `conic-gradient(var(--accent) 0% ${value}%, rgba(255,255,255,0.1) ${value}% 100%)`;
+});
+
+// Acordeón móvil
+document.querySelectorAll('.accordion-header').forEach(header=>{
+  header.addEventListener('click', ()=>{
+    const item = header.parentElement;
+    const content = header.nextElementSibling;
+    if(item.classList.contains('active')){
+      content.style.maxHeight = null;
+      content.style.paddingTop = '0px';
+      content.style.paddingBottom = '0px';
+      item.classList.remove('active');
+    } else {
+      document.querySelectorAll('.accordion-item.active').forEach(activeItem=>{
+        activeItem.classList.remove('active');
+        activeItem.querySelector('.accordion-content').style.maxHeight = null;
+        activeItem.querySelector('.accordion-content').style.paddingTop = '0px';
+        activeItem.querySelector('.accordion-content').style.paddingBottom = '0px';
+      });
+      item.classList.add('active');
+      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.paddingTop = '12px';
+      content.style.paddingBottom = '12px';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
