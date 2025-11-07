@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Procesar Pago — CertiWork</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1:#071022;
+      --card:#0b1220;
+      --muted:#9aa6b2;
+      --text:#e6eef6;
+      --glass:rgba(255,255,255,0.05);
+      --accent:#06b6d4;
+      --accent-2:#ff6b6b;
+      --radius:14px;
+      font-family:'Inter',system-ui;
+    }
+    body{margin:0;background:var(--bg-1);color:var(--text);}
+
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1150px;margin:auto;padding:24px}
+
+    /* HEADER */
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 0;
+      position:sticky;top:0;z-index:100;background:var(--bg-1);
+    }
+    .brand{display:flex;gap:10px;align-items:center;font-size:18px;font-weight:700;cursor:pointer;}
+    .brand img{width:44px;border-radius:12px}
+
+    nav{display:flex;gap:14px;transition:.3s ease;}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted);font-size:14px;}
+    nav a.active, nav a:hover{background:var(--glass);color:white}
+
+    #toggleMenu{
+      display:none;width:34px;height:34px;background:var(--glass);
+      border-radius:8px;border:none;cursor:pointer;color:white;
+      align-items:center;justify-content:center;
+    }
+    @media(max-width:780px){
+      nav{
+        position:absolute;top:64px;right:24px;background:var(--glass);
+        backdrop-filter:blur(8px);padding:14px;border-radius:12px;
+        display:none;flex-direction:column;gap:8px;
+      }
+      nav.show{display:flex;}
+      #toggleMenu{display:flex;}
+    }
+
+    /* CONTENIDO PAGO */
+    .container{
+      max-width:1100px;
+      margin:40px auto;
+      padding:20px;
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+    }
+
+    .card, .preview{
+      background:var(--glass);
+      border-radius:var(--radius);
+      padding:20px;
+      flex:1;
+      min-width:300px;
+      backdrop-filter:blur(10px);
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .preview img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      border-radius:var(--radius);
+    }
+
+    .price{
+      font-size:26px;
+      font-weight:800;
+      margin-top:10px;
+    }
+
+    label{display:block;margin-top:12px;font-weight:600;font-size:14px;}
+    input{
+      width:100%;padding:10px;border-radius:10px;border:none;margin-top:4px;
+      background:#101a29;color:white;outline:none;
+    }
+
+    button, .back-btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      font-weight:700;
+      font-size:16px;
+      cursor:pointer;
+      text-align:center;
+      margin-top:18px;
+      transition:transform .1s;
+    }
+    button:active, .back-btn:active{
+      transform:translateY(1px);
+    }
+    button{
+      background:linear-gradient(90deg,var(--accent-2),var(--accent));
+      color:#071022;
+    }
+    .back-btn{
+      background:var(--glass);
+      color:var(--accent);
+    }
+
+    @media(max-width:768px){
+      .container{flex-direction:column;}
+      .preview img{height:200px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <div class="brand" onclick="window.location.href='index.html'">
+    <img src="certiwork-logo.png" alt="CertiWork">
+    CertiWork
+  </div>
+
+  <button id="toggleMenu">≡</button>
+
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="cursos.html">Cursos</a>
+    <a href="comunidad.html">Comunidad</a>
+    <a href="login.html">Iniciar sesión</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- Info del Curso -->
+  <div class="preview">
+    <img id="course-img" src="">
+    <h2 id="course-name"></h2>
+    <div style="color:var(--muted)" id="course-duration"></div>
+    <div style="color:var(--muted)" id="course-cert"></div>
+    <div class="price" id="course-price"></div>
+  </div>
+
+  <!-- Formulario -->
+  <div class="card">
+    <h2>Datos de Pago</h2>
+
+    <form id="payment-form">
+      <label>Nombre completo</label>
+      <input type="text" required>
+
+      <label>Correo electrónico</label>
+      <input type="email" required>
+
+      <label>Número de tarjeta</label>
+      <input type="text" maxlength="16" required>
+
+      <label>Fecha de expiración (MM/AA)</label>
+      <input type="text" placeholder="10/27" required>
+
+      <label>CVV</label>
+      <input type="text" maxlength="4" required>
+
+      <button type="submit">Pagar</button>
+    </form>
+
+    <button type="button" class="back-btn" onclick="history.back()">← Retroceder</button>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+  const toggle = document.getElementById("toggleMenu");
+  const nav = document.querySelector("nav");
+  toggle.onclick = () => nav.classList.toggle("show");
+
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById("course-name").textContent = params.get("course");
+  document.getElementById("course-price").textContent = "S/ " + params.get("price");
+  document.getElementById("course-duration").textContent = params.get("duration");
+  document.getElementById("course-cert").textContent = params.get("cert");
+  document.getElementById("course-img").src = params.get("img");
+
+  document.getElementById("payment-form").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    alert(`✅ Pago realizado con éxito.\nHas adquirido: ${params.get("course")}\nMonto: S/ ${params.get("price")}`);
+    window.location.href = "index.html";
+  });
+</script>
+
+</body>
+</html>
